@@ -5,14 +5,16 @@ format: html
 editor: visual
 ---
 
-```{r}
+# Load the environment
+
+```{r load_the_environment}
 renv::status()
 renv::snapshot()
 renv::activate()
 options(timeout = max(1000, getOption("timeout")))
 ```
 
-```{r}
+```{r install_the_packages}
 #install.packages("Seurat")
 #install.packages("SeuratObject")
 #install.packages("ggplot2")
@@ -71,7 +73,7 @@ library(pheatmap)
 
 To start the analysis, let’s read in the `10X`-corrected matrices. If starting from typical `Cell Ranger` output, it’s possible to choose if you want to use Ensemble ID or gene symbol for the count matrix. This is done using `gene.column` option; default is ‘2,’ which is gene symbol.
 
-```{r Read the data}
+```{r Read_the_data}
 #1. check if the file exist
 file.exists("KICH_GSE159115_expression.h5")
 file.exists("KICH_GSE159115_CellMetainfo_table.tsv")
@@ -516,4 +518,12 @@ FeaturePlot(seurat_obj, features = features[1:2], blend = TRUE)
 #____RidgePlot_________
 RidgePlot(seurat_obj, features = features[1:5], ncol=2)
 
+```
+
+```{r}
+{r}
+# Assuming you have a Seurat object named seurat_object
+
+# Save the Seurat object as an RDS file
+saveRDS(seurat_obj, file = "seurat_object_final.rds")
 ```
